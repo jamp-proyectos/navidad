@@ -6,7 +6,7 @@ document.getElementById('letterForm').addEventListener('submit', e => {
   const feedback = document.getElementById('letterFeedback');
 
   if (!window.jspdf || !window.jspdf.jsPDF) {
-    feedback.textContent = 'No se ha podido cargar el generador PDF. Comprueba tu conexión a Internet e inténtalo de nuevo.';
+    feedback.textContent = 'No se ha podido cargar el generador PDF. Comprueba tu conexión a Internet, desactiva bloqueadores de anuncios para esta página e inténtalo de nuevo.';
     return;
   }
 

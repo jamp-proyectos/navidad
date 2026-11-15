@@ -106,6 +106,29 @@
   </section>
   <footer><span>✦ Navidad Mágica</span><span>Hecho con ilusión · Feliz Navidad</span></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script>
+    window.jspdf = window.jspdf || {};
+    function loadJsPdfFallback(src) {
+      return new Promise(function (resolve) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function () { resolve(true); };
+        s.onerror = function () { resolve(false); };
+        document.head.appendChild(s);
+      });
+    }
+    (async function () {
+      if (window.jspdf && window.jspdf.jsPDF) return;
+      const sources = [
+        'https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js',
+        'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js'
+      ];
+      for (const src of sources) {
+        await loadJsPdfFallback(src);
+        if (window.jspdf && window.jspdf.jsPDF) return;
+      }
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

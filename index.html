@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#092b25">
+  <meta name="description" content="Vive la magia de la Navidad: escribe tu carta a los Reyes Magos y disfruta de un juego interactivo.">
+  <title>Navidad Mágica · Una Navidad para compartir</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="snow" aria-hidden="true"></div>
+  <header class="hero">
+    <nav class="topbar">
+      <a class="brand" href="#inicio" aria-label="Navidad Mágica, inicio">✦ Navidad Mágica</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#carta">Carta a los Reyes</a><a href="#juego">Juego navideño</a>
+      </div>
+    </nav>
+    <main id="inicio" class="hero-content">
+      <div class="eyebrow">✧ La magia está en los pequeños momentos ✧</div>
+      <h1>¡Feliz <span>Navidad!</span></h1>
+      <p>Prepara tus deseos, comparte la ilusión y deja que la magia te acompañe.</p>
+      <a class="primary-btn" href="#experiencias">Descubre la magia <span>↓</span></a>
+    </main>
+    <div class="hero-decor decor-left">✧</div><div class="hero-decor decor-right">❄</div>
+    <div class="hill hill-one"></div><div class="hill hill-two"></div>
+  </header>
+
+  <section class="intro section" id="experiencias">
+    <p class="eyebrow dark">BIENVENIDOS A CASA</p>
+    <h2>Un lugar para vivir la Navidad</h2>
+    <p class="section-lead">Dos experiencias para compartir momentos inolvidables.</p>
+    <div class="feature-grid">
+      <a class="feature-card" href="#carta"><span class="feature-icon">✉</span><h3>La ilusión</h3><p>Escribe tu carta a Melchor, Gaspar y Baltasar.</p><span class="card-arrow">Escribir →</span></a>
+      <a class="feature-card" href="#juego"><span class="feature-icon">★</span><h3>La aventura</h3><p>Ayuda a recoger estrellas en una noche mágica.</p><span class="card-arrow">Jugar →</span></a>
+    </div>
+  </section>
+
+  <section class="section letter-section" id="carta">
+    <div class="letter-copy">
+      <p class="eyebrow">ORIENTE YA SE PREPARA</p>
+      <h2>Tu carta a los<br><em>Reyes Magos</em></h2>
+      <p>Cuéntales cómo te has portado, qué sueños tienes y qué te gustaría encontrar bajo el árbol. ¡La ilusión comienza al escribir!</p>
+      <div class="magic-letter-art" aria-label="Ilustración de una carta para los tres Reyes Magos">
+        <div class="letter-sparkle sparkle-one">✦</div>
+        <div class="letter-sparkle sparkle-two">✧</div>
+        <div class="royal-envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-paper">
+            <span class="paper-star">✦</span>
+            <strong>Mis deseos</strong>
+            <span>para Oriente</span>
+            <div class="paper-lines"></div>
+          </div>
+          <div class="envelope-front"></div>
+          <div class="envelope-seal">✧</div>
+        </div>
+        <div class="king-ribbon"><span>♔</span><b>Melchor</b><i>·</i><span>♔</span><b>Gaspar</b><i>·</i><span>♔</span><b>Baltasar</b></div>
+      </div>
+    </div>
+    <form class="letter-form" id="letterForm">
+      <div class="form-title"><span class="form-crown">♔</span><div><p class="form-kicker">ESCRIBE CON EL CORAZÓN</p><h3>Queridos Reyes Magos…</h3><p>Tu carta especial está a punto de viajar a Oriente</p></div></div>
+
+      <fieldset class="letter-designs">
+        <legend>Elige el diseño de tu carta</legend>
+        <p class="design-help">Selecciona uno de estos cinco estilos para crear tu PDF.</p>
+        <div class="design-grid">
+          <label class="design-option design-royal"><input type="radio" name="letterDesign" value="royal" checked><span class="design-preview"><span class="preview-crown">♔</span><b>Real clásico</b><small>Verde y dorado</small></span></label>
+          <label class="design-option design-parchment"><input type="radio" name="letterDesign" value="parchment"><span class="design-preview"><span class="preview-crown">✦</span><b>Pergamino</b><small>Crema y sepia</small></span></label>
+          <label class="design-option design-stars"><input type="radio" name="letterDesign" value="stars"><span class="design-preview"><span class="preview-crown">★</span><b>Noche estrellada</b><small>Azul y plata</small></span></label>
+          <label class="design-option design-elegant"><input type="radio" name="letterDesign" value="elegant"><span class="design-preview"><span class="preview-crown">✧</span><b>Elegante</b><small>Azul noche y oro</small></span></label>
+          <label class="design-option design-christmas"><input type="radio" name="letterDesign" value="christmas"><span class="design-preview"><span class="preview-crown">❄</span><b>Navidad</b><small>Rojo y verde</small></span></label>
+        </div>
+      </fieldset>
+      <label for="childName">¿Cómo te llamas?</label><input id="childName" name="childName" maxlength="60" placeholder="Tu nombre" required>
+      <label for="goodThing">Este año me he portado…</label><textarea id="goodThing" name="goodThing" rows="3" placeholder="Cuéntales algo bueno que hayas hecho…" required></textarea>
+      <label for="wishList">Mis deseos para esta Navidad</label><textarea id="wishList" name="wishList" rows="4" placeholder="Me gustaría pedir…" required></textarea>
+      <label for="message">Un mensaje para los Reyes (opcional)</label><textarea id="message" name="message" rows="2" placeholder="Gracias por vuestra magia…"></textarea>
+      <button class="primary-btn form-submit" type="submit"><span>✉</span> Generar mi carta en PDF <span>✨</span></button>
+      <p class="form-hint">Elige tu diseño y descarga la carta en PDF. Tus datos se procesan en este dispositivo y no se envían a ningún servidor.</p>
+      <div class="form-feedback" id="letterFeedback" role="status"></div>
+    </form>
+  </section>
+
+  <section class="section game-section" id="juego">
+    <div class="section-heading">
+      <p class="eyebrow">UNA MISIÓN MUY ESPECIAL</p><h2>La noche de las estrellas</h2>
+      <p class="section-lead">Mueve a Papá Noel y recoge estrellas antes de que termine el tiempo.</p>
+    </div>
+    <div class="game-shell">
+      <div class="game-toolbar"><div><span class="stat-label">PUNTOS</span><strong id="score">00</strong></div><div><span class="stat-label">TIEMPO</span><strong id="time">30</strong></div><div><span class="stat-label">RÉCORD</span><strong id="best">00</strong></div><button id="soundToggle" class="sound-btn" aria-pressed="true">♫ Sonido: sí</button></div>
+      <div class="game-stage" id="gameStage" tabindex="0" aria-label="Zona de juego. Usa las flechas o A y D para mover a Papá Noel.">
+        <div class="game-stars" aria-hidden="true">✦　　·　　✧　　　·　　✦　　·　✧</div>
+        <div class="moon">☾</div><div class="game-message" id="gameMessage"><strong>¡La Navidad necesita tu ayuda!</strong><span>Recoge tantas estrellas como puedas.</span><button class="primary-btn" id="startGame">Empezar a jugar</button></div>
+        <div class="player" id="player" aria-label="Papá Noel">🎅</div>
+      </div>
+      <div class="game-bottom"><span>⌨️ Flechas ← → o teclas A / D</span><span>📱 También puedes tocar los controles</span></div>
+      <div class="touch-controls"><button id="leftBtn" aria-label="Mover a la izquierda">←</button><button id="rightBtn" aria-label="Mover a la derecha">→</button></div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="closing-star">✧</div><h2>Que nunca falte la ilusión</h2><p>La mejor magia de la Navidad es compartirla.</p><a href="#inicio">Volver arriba ↑</a>
+  </section>
+  <footer><span>✦ Navidad Mágica</span><span>Hecho con ilusión · Feliz Navidad</span></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script>
+    window.jspdf = window.jspdf || {};
+    function loadJsPdfFallback(src) {
+      return new Promise(function (resolve) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function () { resolve(true); };
+        s.onerror = function () { resolve(false); };
+        document.head.appendChild(s);
+      });
+    }
+    (async function () {
+      if (window.jspdf && window.jspdf.jsPDF) return;
+      const sources = [
+        'https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js',
+        'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js'
+      ];
+      for (const src of sources) {
+        await loadJsPdfFallback(src);
+        if (window.jspdf && window.jspdf.jsPDF) return;
+      }
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

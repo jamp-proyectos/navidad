@@ -1,5 +1,128 @@
-// Carta: se descarga como archivo de texto, sin enviar datos personales.
-document.getElementById('letterForm').addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const content=`Queridos Reyes Magos:\n\nMe llamo ${d.get('childName')}.\n\nEste año me he portado:\n${d.get('goodThing')}\n\nMis deseos:\n${d.get('wishList')}\n\nMi mensaje:\n${d.get('message')||'Gracias por vuestra magia.'}\n\nCon cariño,\n${d.get('childName')}\n`;const blob=new Blob([content],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='carta-a-los-reyes-magos.txt';a.click();URL.revokeObjectURL(url);document.getElementById('letterFeedback').textContent='¡Tu carta está lista! Se ha descargado en tu dispositivo. ✨';});
+// Carta: genera un PDF con uno de los cinco diseños seleccionados.
+document.getElementById('letterForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const data = new FormData(form);
+  const feedback = document.getElementById('letterFeedback');
+
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    feedback.textContent = 'No se ha podido cargar el generador PDF. Comprueba tu conexión a Internet e inténtalo de nuevo.';
+    return;
+  }
+
+  const themes = {
+    royal: {name:'Real clásico', bg:[17,58,46], accent:[190,151,76], paper:[250,247,236], ink:[47,57,46], border:[190,151,76]},
+    parchment: {name:'Pergamino', bg:[113,78,43], accent:[157,112,59], paper:[247,235,205], ink:[91,64,39], border:[177,137,83]},
+    stars: {name:'Noche estrellada', bg:[24,55,94], accent:[194,216,240], paper:[246,249,255], ink:[35,54,79], border:[137,174,216]},
+    elegant: {name:'Elegante', bg:[23,34,56], accent:[211,180,103], paper:[250,249,245], ink:[43,49,60], border:[181,148,78]},
+    christmas: {name:'Navidad', bg:[132,43,49], accent:[221,190,135], paper:[255,249,237], ink:[55,68,51], border:[39,100,69]}
+  };
+  const theme = themes[data.get('letterDesign')] || themes.royal;
+  const doc = new window.jspdf.jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const margin = 22;
+  let y = 0;
+
+  function drawPage(isFirst) {
+    doc.setFillColor(...theme.paper);
+    doc.rect(0, 0, pageW, pageH, 'F');
+    doc.setDrawColor(...theme.border);
+    doc.setLineWidth(0.8);
+    doc.rect(9, 9, pageW - 18, pageH - 18);
+    doc.setLineWidth(0.25);
+    doc.rect(12, 12, pageW - 24, pageH - 24);
+
+    doc.setFillColor(...theme.bg);
+    doc.rect(13, 13, pageW - 26, isFirst ? 42 : 25, 'F');
+    doc.setTextColor(...theme.accent);
+    doc.setFont('times', 'bold');
+    doc.setFontSize(isFirst ? 22 : 15);
+    doc.text('A LOS REYES MAGOS', pageW / 2, isFirst ? 31 : 29, {align:'center'});
+    if (isFirst) {
+      doc.setFont('times', 'italic');
+      doc.setFontSize(11);
+      doc.text('Melchor · Gaspar · Baltasar', pageW / 2, 44, {align:'center'});
+      doc.setFontSize(9);
+      doc.text(theme.name.toUpperCase(), pageW / 2, 51, {align:'center'});
+      y = 72;
+    } else {
+      y = 51;
+    }
+    doc.setTextColor(...theme.ink);
+    doc.setFont('times', 'normal');
+    doc.setFontSize(12);
+    doc.text('Queridos Reyes Magos:', margin, y);
+    y += 11;
+  }
+
+  function ensureSpace(height) {
+    if (y + height > pageH - 28) {
+      doc.addPage();
+      drawPage(false);
+    }
+  }
+
+  function addBlock(label, value) {
+    const clean = String(value || '').trim();
+    if (!clean) return;
+    doc.setFont('times', 'bold');
+    doc.setFontSize(12);
+    ensureSpace(12);
+    doc.setTextColor(...theme.bg);
+    doc.text(label, margin, y);
+    y += 6;
+    doc.setFont('times', 'normal');
+    doc.setFontSize(11.5);
+    doc.setTextColor(...theme.ink);
+    const lines = doc.splitTextToSize(clean, pageW - margin * 2);
+    lines.forEach(line => {
+      ensureSpace(6);
+      doc.text(line, margin, y);
+      y += 5.8;
+    });
+    y += 6;
+  }
+
+  drawPage(true);
+  const name = String(data.get('childName') || '').trim();
+  doc.setFont('times', 'normal');
+  doc.setFontSize(11.5);
+  doc.setTextColor(...theme.ink);
+  const opening = doc.splitTextToSize(`Me llamo ${name} y este año quiero contaros algunas cosas.`, pageW - margin * 2);
+  opening.forEach(line => { ensureSpace(7); doc.text(line, margin, y); y += 6; });
+  y += 5;
+
+  addBlock('Este año me he portado…', data.get('goodThing'));
+  addBlock('Mis deseos para esta Navidad', data.get('wishList'));
+  addBlock('Un mensaje para vosotros', data.get('message') || 'Gracias por vuestra magia y por repartir ilusión.');
+
+  ensureSpace(35);
+  doc.setFont('times', 'italic');
+  doc.setFontSize(12);
+  doc.setTextColor(...theme.bg);
+  doc.text('Con mucho cariño,', margin, y + 2);
+  y += 12;
+  doc.setFont('times', 'bold');
+  doc.setFontSize(15);
+  doc.text(name, margin, y + 2);
+
+  // Pie decorativo en todas las páginas.
+  const pageCount = doc.getNumberOfPages();
+  for (let page = 1; page <= pageCount; page++) {
+    doc.setPage(page);
+    doc.setDrawColor(...theme.border);
+    doc.line(25, pageH - 21, pageW - 25, pageH - 21);
+    doc.setFont('times', 'italic');
+    doc.setFontSize(9);
+    doc.setTextColor(...theme.bg);
+    doc.text('Que la magia de la Navidad os acompañe', pageW / 2, pageH - 15, {align:'center'});
+  }
+
+  const safeName = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'mi-carta';
+  doc.save(`carta-reyes-${safeName}.pdf`);
+  feedback.textContent = `¡Tu carta en PDF con el diseño «${theme.name}» se ha generado y descargado! ✨`;
+});
 
 // Efectos sonoros del juego.
 let audioCtx=null;

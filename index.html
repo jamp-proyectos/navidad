@@ -62,12 +62,24 @@
     </div>
     <form class="letter-form" id="letterForm">
       <div class="form-title"><span class="form-crown">♔</span><div><p class="form-kicker">ESCRIBE CON EL CORAZÓN</p><h3>Queridos Reyes Magos…</h3><p>Tu carta especial está a punto de viajar a Oriente</p></div></div>
+
+      <fieldset class="letter-designs">
+        <legend>Elige el diseño de tu carta</legend>
+        <p class="design-help">Selecciona uno de estos cinco estilos para crear tu PDF.</p>
+        <div class="design-grid">
+          <label class="design-option design-royal"><input type="radio" name="letterDesign" value="royal" checked><span class="design-preview"><span class="preview-crown">♔</span><b>Real clásico</b><small>Verde y dorado</small></span></label>
+          <label class="design-option design-parchment"><input type="radio" name="letterDesign" value="parchment"><span class="design-preview"><span class="preview-crown">✦</span><b>Pergamino</b><small>Crema y sepia</small></span></label>
+          <label class="design-option design-stars"><input type="radio" name="letterDesign" value="stars"><span class="design-preview"><span class="preview-crown">★</span><b>Noche estrellada</b><small>Azul y plata</small></span></label>
+          <label class="design-option design-elegant"><input type="radio" name="letterDesign" value="elegant"><span class="design-preview"><span class="preview-crown">✧</span><b>Elegante</b><small>Azul noche y oro</small></span></label>
+          <label class="design-option design-christmas"><input type="radio" name="letterDesign" value="christmas"><span class="design-preview"><span class="preview-crown">❄</span><b>Navidad</b><small>Rojo y verde</small></span></label>
+        </div>
+      </fieldset>
       <label for="childName">¿Cómo te llamas?</label><input id="childName" name="childName" maxlength="60" placeholder="Tu nombre" required>
       <label for="goodThing">Este año me he portado…</label><textarea id="goodThing" name="goodThing" rows="3" placeholder="Cuéntales algo bueno que hayas hecho…" required></textarea>
       <label for="wishList">Mis deseos para esta Navidad</label><textarea id="wishList" name="wishList" rows="4" placeholder="Me gustaría pedir…" required></textarea>
       <label for="message">Un mensaje para los Reyes (opcional)</label><textarea id="message" name="message" rows="2" placeholder="Gracias por vuestra magia…"></textarea>
-      <button class="primary-btn form-submit" type="submit"><span>✉</span> Preparar mi carta <span>✨</span></button>
-      <p class="form-hint">La carta se prepara en este dispositivo; no se envía a ningún servidor.</p>
+      <button class="primary-btn form-submit" type="submit"><span>✉</span> Generar mi carta en PDF <span>✨</span></button>
+      <p class="form-hint">Elige tu diseño y descarga la carta en PDF. Tus datos se procesan en este dispositivo y no se envían a ningún servidor.</p>
       <div class="form-feedback" id="letterFeedback" role="status"></div>
     </form>
   </section>
@@ -93,6 +105,7 @@
     <div class="closing-star">✧</div><h2>Que nunca falte la ilusión</h2><p>La mejor magia de la Navidad es compartirla.</p><a href="#inicio">Volver arriba ↑</a>
   </section>
   <footer><span>✦ Navidad Mágica</span><span>Hecho con ilusión · Feliz Navidad</span></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

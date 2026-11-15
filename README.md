@@ -3,7 +3,7 @@
 Web interactiva navideña, estática y lista para publicar en GitHub Pages.
 
 ## Incluye
-- **Carta a los Reyes Magos:** formulario con diseño ilustrado de sobre y papel de carta. Genera y descarga una carta `.txt`; los datos no se envían a ningún servidor.
+- **Carta a los Reyes Magos:** formulario con diseño ilustrado de sobre y papel de carta. Permite elegir entre cinco diseños y descargar la carta en PDF; los datos no se envían a ningún servidor.
 - **Juego audiovisual:** mueve a Papá Noel para recoger estrellas durante 30 segundos. Incluye efectos de sonido, puntuación, récord guardado localmente y controles táctiles.
 - Diseño adaptable a móviles, tabletas y ordenadores, efecto de nieve y navegación por secciones.
 

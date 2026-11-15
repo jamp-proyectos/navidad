@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#092b25">
-  <meta name="description" content="Vive la magia de la Navidad: villancicos, carta a los Reyes Magos y juegos interactivos.">
+  <meta name="description" content="Vive la magia de la Navidad: escribe tu carta a los Reyes Magos y disfruta de un juego interactivo.">
   <title>Navidad Mágica · Una Navidad para compartir</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -15,13 +15,13 @@
       <a class="brand" href="#inicio" aria-label="Navidad Mágica, inicio">✦ Navidad Mágica</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
       <div class="nav-links" id="navLinks">
-        <a href="#villancicos">Villancicos</a><a href="#carta">Carta a los Reyes</a><a href="#juego">Juego navideño</a>
+        <a href="#carta">Carta a los Reyes</a><a href="#juego">Juego navideño</a>
       </div>
     </nav>
     <main id="inicio" class="hero-content">
       <div class="eyebrow">✧ La magia está en los pequeños momentos ✧</div>
       <h1>¡Feliz <span>Navidad!</span></h1>
-      <p>Enciende la ilusión, canta en familia y deja que la magia te acompañe.</p>
+      <p>Prepara tus deseos, comparte la ilusión y deja que la magia te acompañe.</p>
       <a class="primary-btn" href="#experiencias">Descubre la magia <span>↓</span></a>
     </main>
     <div class="hero-decor decor-left">✧</div><div class="hero-decor decor-right">❄</div>
@@ -31,33 +31,10 @@
   <section class="intro section" id="experiencias">
     <p class="eyebrow dark">BIENVENIDOS A CASA</p>
     <h2>Un lugar para vivir la Navidad</h2>
-    <p class="section-lead">Tres experiencias para compartir momentos inolvidables.</p>
+    <p class="section-lead">Dos experiencias para compartir momentos inolvidables.</p>
     <div class="feature-grid">
-      <a class="feature-card" href="#villancicos"><span class="feature-icon">♫</span><h3>La música</h3><p>Escucha y canta villancicos populares.</p><span class="card-arrow">Explorar →</span></a>
       <a class="feature-card" href="#carta"><span class="feature-icon">✉</span><h3>La ilusión</h3><p>Escribe tu carta a Melchor, Gaspar y Baltasar.</p><span class="card-arrow">Escribir →</span></a>
       <a class="feature-card" href="#juego"><span class="feature-icon">★</span><h3>La aventura</h3><p>Ayuda a recoger estrellas en una noche mágica.</p><span class="card-arrow">Jugar →</span></a>
-    </div>
-  </section>
-
-  <section class="section carols-section" id="villancicos">
-    <div class="section-heading">
-      <p class="eyebrow">SONIDOS DE NAVIDAD</p><h2>Villancicos populares</h2>
-      <p class="section-lead">Elige una canción, pulsa reproducir y acompaña la melodía.</p>
-    </div>
-    <div class="carol-layout">
-      <div class="carol-list" id="carolList" aria-label="Lista de villancicos"></div>
-      <article class="lyrics-panel">
-        <div class="music-note">♫</div>
-        <p class="eyebrow dark" id="carolTag">VILLANCICO</p>
-        <h3 id="carolTitle">Campana sobre campana</h3>
-        <div class="lyrics" id="lyrics" aria-live="polite"></div>
-        <div class="player-controls">
-          <button class="round-btn" id="playCarol" aria-label="Reproducir">▶</button>
-          <div class="track-info"><strong id="playStatus">Reproduce la melodía</strong><span id="recordingCredit">Grabaciones tradicionales reales · requiere conexión a Internet</span></div>
-          <button class="text-btn" id="stopCarol">Detener</button>
-        </div>
-        <p class="small-note">Las grabaciones proceden de archivos sonoros tradicionales. Se necesita conexión a Internet para escucharlas.</p>
-      </article>
     </div>
   </section>
 
@@ -66,15 +43,30 @@
       <p class="eyebrow">ORIENTE YA SE PREPARA</p>
       <h2>Tu carta a los<br><em>Reyes Magos</em></h2>
       <p>Cuéntales cómo te has portado, qué sueños tienes y qué te gustaría encontrar bajo el árbol. ¡La ilusión comienza al escribir!</p>
-      <div class="kings">♔ <span>♔</span> ♔</div>
+      <div class="magic-letter-art" aria-label="Ilustración de una carta para los tres Reyes Magos">
+        <div class="letter-sparkle sparkle-one">✦</div>
+        <div class="letter-sparkle sparkle-two">✧</div>
+        <div class="royal-envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-paper">
+            <span class="paper-star">✦</span>
+            <strong>Mis deseos</strong>
+            <span>para Oriente</span>
+            <div class="paper-lines"></div>
+          </div>
+          <div class="envelope-front"></div>
+          <div class="envelope-seal">✧</div>
+        </div>
+        <div class="king-ribbon"><span>♔</span><b>Melchor</b><i>·</i><span>♔</span><b>Gaspar</b><i>·</i><span>♔</span><b>Baltasar</b></div>
+      </div>
     </div>
     <form class="letter-form" id="letterForm">
-      <div class="form-title"><span>✧</span><div><h3>Queridos Reyes Magos…</h3><p>Tu carta especial</p></div></div>
+      <div class="form-title"><span class="form-crown">♔</span><div><p class="form-kicker">ESCRIBE CON EL CORAZÓN</p><h3>Queridos Reyes Magos…</h3><p>Tu carta especial está a punto de viajar a Oriente</p></div></div>
       <label for="childName">¿Cómo te llamas?</label><input id="childName" name="childName" maxlength="60" placeholder="Tu nombre" required>
       <label for="goodThing">Este año me he portado…</label><textarea id="goodThing" name="goodThing" rows="3" placeholder="Cuéntales algo bueno que hayas hecho…" required></textarea>
       <label for="wishList">Mis deseos para esta Navidad</label><textarea id="wishList" name="wishList" rows="4" placeholder="Me gustaría pedir…" required></textarea>
       <label for="message">Un mensaje para los Reyes (opcional)</label><textarea id="message" name="message" rows="2" placeholder="Gracias por vuestra magia…"></textarea>
-      <button class="primary-btn form-submit" type="submit">Enviar mi carta ✨</button>
+      <button class="primary-btn form-submit" type="submit"><span>✉</span> Preparar mi carta <span>✨</span></button>
       <p class="form-hint">La carta se prepara en este dispositivo; no se envía a ningún servidor.</p>
       <div class="form-feedback" id="letterFeedback" role="status"></div>
     </form>
